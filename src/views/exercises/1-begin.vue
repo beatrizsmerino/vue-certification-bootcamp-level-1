@@ -2,6 +2,10 @@
 import { ref } from "vue";
 const name = ref("Bootcampers");
 const item = ref("coffee");
+const updateItem = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  item.value = target.value;
+};
 </script>
 <template>
   <div class="viewport-center">
@@ -17,7 +21,7 @@ const item = ref("coffee");
         <label for="item" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Item:
         </label>
-        <input type="text" name="item" id="item" v-model="item" placeholder="Enter an item" required
+        <input type="text" name="item" id="item" :value="item" @input="updateItem" placeholder="Enter an item" required
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
       <div
