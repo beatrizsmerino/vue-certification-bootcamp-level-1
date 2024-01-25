@@ -13,6 +13,7 @@ const users = ref([
   { id: '7fbee0ff-c831-44ed-b7bb-c8265cc4fa4f', name: 'Sean Bauer', avatar: 'https://i.pravatar.cc/150?img=9' },
   { id: '9c110067-2345-4f7f-89cc-b50cd02fd106', name: 'Ashley Fisher', avatar: 'https://i.pravatar.cc/150?img=10' }
 ]);
+const getUserInitials = (userName: string) => userName.split(" ").reduce((initials, namePart) => initials + namePart[0], "").toUpperCase();
 </script>
 <template>
   <div class="viewport-center">
@@ -21,8 +22,7 @@ const users = ref([
         <!-- User With Avatar -->
         <img class="avatar" v-if="user.avatar" :src="user.avatar" />
         <!-- 💪 BONUS: Display their initials as the avatar instead of the placeholder -->
-        <!-- <span class="avatar">NG</span> -->
-        <img class="avatar" v-else src="/placeholder-avatar.jpg" />
+        <span class="avatar" v-else>{{ getUserInitials(user.name) }}</span>
         {{ user.name }}
       </li>
     </ul>
