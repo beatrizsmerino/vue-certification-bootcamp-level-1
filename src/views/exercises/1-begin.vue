@@ -5,6 +5,16 @@ const item = ref("coffee");
 </script>
 <template>
   <div class="viewport-center">
-    <div>Put your code here</div>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" v-model="name">
+      <br/>
+      <label for="item">Item:</label>
+      <input type="text" name="item" id="item" v-model="item">
+      <hr/>
+      <p>
+        Hello {{ name }}! Do you like {{ item }}?
+      </p>
+    </div>
   </div>
 </template>
