@@ -13,8 +13,8 @@ const users = ref([
   { id: '7fbee0ff-c831-44ed-b7bb-c8265cc4fa4f', votes: 0, name: 'Sean Bauer', avatar: 'https://i.pravatar.cc/150?img=9' },
   { id: '9c110067-2345-4f7f-89cc-b50cd02fd106', votes: 0, name: 'Ashley Fisher', avatar: 'https://i.pravatar.cc/150?img=10' }
 ]);
-const incrementVotes = (votes: number) => votes++;
-const decrementVotes = (votes: number) => votes > 0 ? votes-- : 0;
+const incrementVotes = (user: {votes: number}) => user.votes++;
+const decrementVotes = (user: {votes: number}) => user.votes > 0 ? user.votes-- : 0;
 </script>
 <template>
   <div class="viewport-center">
@@ -28,7 +28,7 @@ const decrementVotes = (votes: number) => votes > 0 ? votes-- : 0;
         <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
         <div>
           <p class="mb-2">{{ user.name }}</p>
-          <button @keydown.up="incrementVotes(user.votes)" @keydown.down="decrementVotes(user.votes)">Vote {{ user.votes }}</button>
+          <button @keydown.arrow-up="incrementVotes(user)" @keydown.arrow-down="decrementVotes(user)">Vote {{ user.votes }}</button>
         </div>
       </li>
     </ul>
