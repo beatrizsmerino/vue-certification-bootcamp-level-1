@@ -14,11 +14,11 @@ const users = ref([
   { id: '9c110067-2345-4f7f-89cc-b50cd02fd106', votes: 0, name: 'Ashley Fisher', avatar: 'https://i.pravatar.cc/150?img=10' }
 ]);
 
-function incrementVote(user) {
+function incrementVote(user: { votes: number }) {
   user.votes++;
 }
 
-function decrementVote(user) {
+function decrementVote(user: { votes: number }) {
   if (user.votes > 0) user.votes--;
 }
 </script>
