@@ -45,7 +45,7 @@ function decrementVote(user: { votes: number }) {
       <h2>Candidates</h2>
       <ul class="user-wrapper">
         <li
-          class="user-card"
+          :class="['user-card', { 'winning': top3Users, 'losing-hard': user.votes == 0 }]"
           v-for="(user, index) in users"
           :key="user.id"
           :tabindex="index + 1"
