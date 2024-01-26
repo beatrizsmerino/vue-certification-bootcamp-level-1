@@ -21,11 +21,11 @@ const top3Users = computed(() => {
     .filter((user) => user.votes > 0);
 });
 
-function incrementVote(user) {
+function incrementVote(user: { votes: number }) {
   user.votes++;
 }
 
-function decrementVote(user) {
+function decrementVote(user: { votes: number }) {
   if (user.votes > 0) user.votes--;
 }
 </script>
