@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from "vue";
 // prettier-ignore
 const users = ref([
@@ -21,11 +21,11 @@ const top3Users = computed(() => {
     .filter((user) => user.votes > 0);
 });
 
-function incrementVote(user) {
+function incrementVote(user: { votes: number }) {
   user.votes++;
 }
 
-function decrementVote(user) {
+function decrementVote(user: { votes: number }) {
   if (user.votes > 0) user.votes--;
 }
 </script>
@@ -45,7 +45,7 @@ function decrementVote(user) {
       <h2>Candidates</h2>
       <ul class="user-wrapper">
         <li
-          class="user-card"
+          :class="['user-card', { 'winning': top3Users[0]?.votes == user.votes, 'losing-hard': user.votes == 0 }]"
           v-for="(user, index) in users"
           :key="user.id"
           :tabindex="index + 1"
