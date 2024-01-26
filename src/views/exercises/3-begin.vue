@@ -30,11 +30,13 @@ const decrementVotes = (event: KeyboardEvent, user: {votes: number}) => {
         v-for="(user, index) in users"
         :key="user.id"
         :tabindex="index + 1"
+        @keydown.up.prevent="incrementVotes($event, user)"
+        @keydown.down.prevent="decrementVotes($event, user)"
       >
         <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
         <div>
           <p class="mb-2">{{ user.name }}</p>
-          <button @keydown.up.prevent="incrementVotes($event, user)" @keydown.down.prevent="decrementVotes($event, user)">Vote {{ user.votes }}</button>
+          <button>Vote {{ user.votes }}</button>
         </div>
       </li>
     </ul>
