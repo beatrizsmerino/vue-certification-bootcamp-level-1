@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 // prettier-ignore
 const users = ref([
@@ -13,6 +13,14 @@ const users = ref([
   { id: '7fbee0ff-c831-44ed-b7bb-c8265cc4fa4f', votes: 0, name: 'Sean Bauer', avatar: 'https://i.pravatar.cc/150?img=9' },
   { id: '9c110067-2345-4f7f-89cc-b50cd02fd106', votes: 0, name: 'Ashley Fisher', avatar: 'https://i.pravatar.cc/150?img=10' }
 ]);
+const incrementVotes = (event: KeyboardEvent, user: {votes: number}) => {
+  event.preventDefault();
+  user.votes++
+};
+const decrementVotes = (event: KeyboardEvent, user: {votes: number}) => {
+  event.preventDefault();
+  user.votes > 0 ? user.votes-- : 0;
+};
 </script>
 <template>
   <div class="viewport-center">
@@ -22,11 +30,13 @@ const users = ref([
         v-for="(user, index) in users"
         :key="user.id"
         :tabindex="index + 1"
+        @keydown.up.prevent="incrementVotes($event, user)"
+        @keydown.down.prevent="decrementVotes($event, user)"
       >
         <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
         <div>
           <p class="mb-2">{{ user.name }}</p>
-          <button>Vote {{ user.votes }}</button>
+          <button @click="user.votes++">Vote {{ user.votes }}</button>
         </div>
       </li>
     </ul>
