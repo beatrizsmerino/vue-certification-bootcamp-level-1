@@ -26,7 +26,7 @@ const users = ref([
         <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
         <div>
           <p class="mb-2">{{ user.name }}</p>
-          <button>Vote {{ user.votes }}</button>
+          <button @click="user.votes++">Vote {{ user.votes }}</button>
         </div>
       </li>
     </ul>
